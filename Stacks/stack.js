@@ -1,17 +1,42 @@
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
 class Stack {
   constructor() {
-    this.data = [];
+    this.first = null;
+    this.last = null;
+    this.size = 0;
   }
 
-  push(record) {
-    this.data.push(record);
+  push(data) {
+    const newNode = new Node(data);
+    if (!this.first) {
+      this.first = newNode;
+      this.last = this.first;
+    } else {
+      current = this.first;
+      this.first = newNode;
+      this.first.next = current;
+    }
+    return ++this.size;
   }
 
-  pop(record) {
-    return this.data.pop();
-  }
+  pop() {
+    if (!this.first) {
+      return undefined;
+    }
 
-  peek() {
-    return this.data[this.data.length - 1];
+    let current = this.first;
+    if (this.first === this.last) {
+      this.last = null;
+    }
+    this.first = this.first.next;
+    this.size--;
+
+    return current.data;
   }
 }
