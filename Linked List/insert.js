@@ -43,6 +43,10 @@ class LinkedList {
       return undefined;
     }
 
+    if ((index = this.length)) {
+      return this.push(data);
+    }
+
     let newNode = new Node(data);
     if (!this.head) {
       this.head = newNode;
