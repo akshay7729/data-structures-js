@@ -39,17 +39,19 @@ class LinkedList {
   }
 
   insert(index, data) {
-    if (index < 0 || index > this.length + 1) {
+    if (index < 0 || index > this.length) {
       return undefined;
+    }
+
+    let newNode = new Node(data);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
     } else {
       let current = this.head;
-      let newNode = new Node(data);
       if (index === 0) {
-        this.head = newNode;
+        newNode = this.head;
         newNode.next = current;
-      } else if (index === this.length) {
-        this.tail = newNode;
-        this.tail.next = null;
       } else {
         let currentNode = this.get(index);
         for (let i = 1; i <= index; i++) {
@@ -60,9 +62,9 @@ class LinkedList {
           }
         }
       }
-      this.length++;
     }
 
+    this.length++;
     return this;
   }
 }
